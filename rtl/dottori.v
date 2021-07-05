@@ -117,7 +117,7 @@ begin
 end
 
 // IC21: Pixel and sync gate
-assign {BLUE, GREEN, RED} = !nH_SYNC ? 3'b000 : PIXEL ? PAL_LATCH[2:0] : PAL_LATCH[5:3];	// 3'd7 : 3'd0;
+assign {BLUE, GREEN, RED} = (V_BLANK | H_BLANK) ? 3'b000 : PIXEL ? PAL_LATCH[2:0] : PAL_LATCH[5:3];	// 3'd7 : 3'd0;
 assign SYNC = V_SYNC ? 1'b0 : nH_SYNC;
 
 // Generate vertical and horizontal blank signals

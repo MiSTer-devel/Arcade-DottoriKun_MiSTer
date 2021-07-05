@@ -297,8 +297,8 @@ wire m_coin   = joy[7];
 ///////////////////   CLOCK DIVIDER   ////////////////////
 
 always @(posedge clk_vid) begin
-	reg div;
-	div <= div + 1'd1;
+	reg [1:0] div;
+	div <= div + (forced_scandoubler ? 2'd1 : 2'd2);
 	ce_pix <= !div;
 end
 
